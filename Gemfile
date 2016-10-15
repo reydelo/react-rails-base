@@ -9,6 +9,8 @@ gem 'sqlite3'
 gem 'sass-rails', '~> 5.0'
 # Use bootstrap for responsive css framework
 gem 'bootstrap-sass', '~> 3.3.6'
+# Use React.js for reactive components
+gem 'react-rails'
 # Use Uglifier as compressor for JavaScript assets
 gem 'uglifier', '>= 1.3.0'
 # Use CoffeeScript for .coffee assets and views
