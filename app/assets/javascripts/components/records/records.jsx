@@ -27,6 +27,16 @@ let Records = React.createClass({
     this.setState({records: records});
   },
 
+  updateRecord: function(record, data) {
+    let index = this.state.records.indexOf(record);
+    let records = React.addons.update(
+      this.state.records, {
+        $splice: [[index, 1, data]]
+      }
+    );
+    this.replaceState({records: records});
+  },
+
   deleteRecord: function(record) {
     let index = this.state.records.indexOf(record);
     let records = React.addons.update(
@@ -84,7 +94,7 @@ let Records = React.createClass({
           <tbody>
             {this.state.records.map(function(record) {
               return <Record key={record.id} record={record}
-                handleDeleteRecord={this.deleteRecord} />
+                handleDeleteRecord={this.deleteRecord} handleEditRecord={this.updateRecord} />
             }.bind(this))}
           </tbody>
         </table>
