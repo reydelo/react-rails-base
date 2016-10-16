@@ -12,15 +12,28 @@ let Records = React.createClass({
   },
 
   addRecord: function(record) {
-    let records = this.state.records.slice();
-    records.push(record);
+    /**
+     * React.addons allow these two lines to
+     * 	be refactored to one mongoDB style statement
+     *
+     * 		let records = this.state.records.slice();
+     * 		records.push(record);
+     */
+    let records = React.addons.update(
+      this.state.records, {
+        $push: [record]
+      }
+    );
     this.setState({records: records});
   },
 
   deleteRecord: function(record) {
-    let records = this.state.records.slice();
-    let index = records.indexOf(record);
-    records.splice(index, 1);
+    let index = this.state.records.indexOf(record);
+    let records = React.addons.update(
+      this.state.records, {
+        $splice: [[index, 1]]
+      }
+    );
     this.replaceState({records: records});
   },
 
